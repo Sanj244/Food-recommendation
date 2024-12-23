@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakfast Dish Suggester</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="text-center">Breakfast Dish Suggestion</h1>
+    <div class="jumbotron text-center">
+        <h2>Looking for Breakfast Ideas?</h2>
+        <p>Click below to get a suggestion from different breakfast categories.</p>
+        <button id="suggestBtn" class="btn btn-primary btn-lg">Suggest a Dish</button>
+        <div id="suggestion" class="mt-4"></div>
+    </div>
+</div>
+
+<!-- Include jQuery and Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Fetch dish suggestion when the button is clicked
+    $("#suggestBtn").click(function() {
+        $.get("/suggest", function(data) {
+            let suggestion = `<h3>Category: ${data.category}</h3>
+                              <h4>Suggested Dish: ${data.dish}</h4>`;
+            $("#suggestion").html(suggestion);
+        });
+    });
+</script>
+
+</body>
+</html>
